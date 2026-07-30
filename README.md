@@ -1,10 +1,10 @@
 # ZFI_REV
 
-SAP S/4HANA FI 전표의 반제 초기화와 역분개를 비동기로 처리하는 RAP OData V4 Web API 예제입니다.
+전표의 Clearing 초기화와 reverse를 async RAP OData V4(Web API)
 
 기존 `FI_ASSET_RAP`의 unmanaged RAP, Save Phase buffer, bgPF 등록 패턴과 `FI_ASSET_ACO_BGPF`의 Factory/Proxy 격리 패턴을 적용했습니다.
 
-## MVP 범위
+# 범위
 
 - 외부 요청 ID를 이용한 중복 접수 방지
 - RAP Deep Create로 원본 전표 Header와 반제전표 Items 접수
@@ -16,15 +16,7 @@ SAP S/4HANA FI 전표의 반제 초기화와 역분개를 비동기로 처리하
 - Test Run 시 입력 및 원본 전표 존재 여부만 검증
 - 완료된 요청과 품목을 건너뛰는 기본 재실행 보호
 
-다음 기능은 MVP에 포함하지 않았습니다.
-
-- FI-AA 원천 전표 역분개
-- 역분개 이후 새로운 Open Item Clearing
-- Application Log(BAL)
-- Retry/Cancel RAP Action
-- 운영 권한 및 승인 Workflow
-
-## 전체 흐름
+# 흐름
 
 ```mermaid
 flowchart TD
