@@ -1,0 +1,24 @@
+{
+  "ExternalRequestId": "REV-2026-000001",
+  "CompanyCode": "1000",
+  "FiscalYear": "2026",
+  "DocumentNumber": "1900000123",
+  "DocumentOrigin": "FI",
+  "ReversalReason": "01",
+  "ReversalPostingDate": "2026-07-30",
+  "ReversalPeriod": "07",
+  "BusinessTransaction": "RFBU",
+  "ResetClearing": true,
+  "ReverseClearingDocument": true,
+  "ReverseOriginalDocument": true,
+  "TestRun": false,
+  "HeaderText": "Wrong customer clearing",
+  "_Items": [
+    {
+      "ItemNumber": "000001",
+      "ClearingCompanyCode": "1000",
+      "ClearingFiscalYear": "2026",
+      "ClearingDocument": "1400000456"
+    }
+  ]
+}

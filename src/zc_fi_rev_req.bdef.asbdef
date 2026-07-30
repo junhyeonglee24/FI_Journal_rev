@@ -1,0 +1,13 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_FI_REV_REQ alias Request
+{
+  use create;
+  use association _Items { create; }
+}
+
+define behavior for ZC_FI_REV_ITM alias Item
+{
+  use association _Request;
+}

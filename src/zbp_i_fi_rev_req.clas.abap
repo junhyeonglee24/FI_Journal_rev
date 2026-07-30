@@ -1,0 +1,9 @@
+CLASS zbp_i_fi_rev_req DEFINITION
+  PUBLIC
+  ABSTRACT
+  FINAL
+  FOR BEHAVIOR OF zi_fi_rev_req.
+ENDCLASS.
+
+CLASS zbp_i_fi_rev_req IMPLEMENTATION.
+ENDCLASS.

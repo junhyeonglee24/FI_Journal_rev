@@ -1,0 +1,62 @@
+unmanaged implementation in class zbp_i_fi_rev_req unique;
+strict ( 2 );
+
+define behavior for ZI_FI_REV_REQ alias Request
+lock master
+authorization master ( instance )
+{
+  create;
+
+  field ( readonly )
+    RequestUUID,
+    ProcessingStatus,
+    ReversalObjectType,
+    ReversalObjectKey,
+    ReversalObjectSystem,
+    MessageType,
+    MessageId,
+    MessageNumber,
+    MessageText,
+    CreatedBy,
+    CreatedAt,
+    LastChangedBy,
+    LastChangedAt;
+
+  field ( mandatory )
+    ExternalRequestId,
+    CompanyCode,
+    FiscalYear,
+    DocumentNumber,
+    ReversalReason,
+    ReversalPostingDate;
+
+  association _Items { create; }
+}
+
+define behavior for ZI_FI_REV_ITM alias Item
+lock dependent by _Request
+authorization dependent by _Request
+{
+  field ( readonly )
+    RequestUUID,
+    ProcessingStatus,
+    ClearingReversalObjectType,
+    ClearingReversalObjectKey,
+    ClearingReversalObjectSystem,
+    MessageType,
+    MessageId,
+    MessageNumber,
+    MessageText,
+    CreatedBy,
+    CreatedAt,
+    LastChangedBy,
+    LastChangedAt;
+
+  field ( mandatory )
+    ItemNumber,
+    ClearingCompanyCode,
+    ClearingFiscalYear,
+    ClearingDocument;
+
+  association _Request;
+}

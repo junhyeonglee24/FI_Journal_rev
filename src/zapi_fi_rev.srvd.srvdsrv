@@ -1,0 +1,5 @@
+@EndUserText.label: 'FI Reversal and Clearing Reset API'
+define service ZAPI_FI_REV {
+  expose ZC_FI_REV_REQ as ReversalRequests;
+  expose ZC_FI_REV_ITM as ReversalClearingItems;
+}
