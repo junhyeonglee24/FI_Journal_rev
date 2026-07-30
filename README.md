@@ -2,7 +2,7 @@
 
 전표의 Clearing 초기화와 reverse를 async RAP OData V4(Web API)
 
-기존 `FI_ASSET_RAP`의 unmanaged RAP, Save Phase buffer, bgPF 등록 패턴과 `FI_ASSET_ACO_BGPF`의 Factory/Proxy 격리 패턴을 적용했습니다.
+unmanaged RAP, Save Phase buffer, bgPF와 Factory/Proxy 적용
 
 # 범위
 
