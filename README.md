@@ -34,7 +34,7 @@ unmanaged RAP, Save Phase buffer, bgPF와 Factory/Proxy 적용
 | `ClearingFiscalYear` | O | 반제전표 회계연도 |
 | `ClearingDocument` | O | 초기화할 반제전표번호 |
 
-`ResetClearing = true`이면 최소 한 개의 Item이 필요합니다. 하나의 원본 전표에 여러 반제전표가 연결된 경우 Items에 모두 전달
+`ResetClearing = true`이면 최소 한 개의 Item 필요, 하나의 원본 전표에 여러 반제전표가 연결된 경우 Items에 모두 전달
 
 ## 처리 상태
 
