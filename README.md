@@ -129,45 +129,4 @@ flowchart TD
 | `REVERSAL_FAILED` | 전표 역분개 실패 |
 | `UNSUPPORTED_ORIGIN` | 현재 Adapter가 지원하지 않는 원천 전표 |
 
-## 실행 Adapter
 
-`ZIF_FI_REV_PROXY`가 표준 호출을 격리합니다.
-
-| 메서드 | 기본 구현 |
-|---|---|
-| `RESET_CLEARING` | `POSTING_INTERFACE_RESET_CLEAR` |
-| `REVERSE_DOCUMENT` | `BAPI_ACC_DOCUMENT_REV_POST` |
-| `COMMIT_WORK` | `BAPI_TRANSACTION_COMMIT` |
-| `ROLLBACK_WORK` | `BAPI_TRANSACTION_ROLLBACK` |
-
-`POSTING_INTERFACE_RESET_CLEAR`는 Classic API이며 시스템 Edition과 릴리스에 따라 사용 가능 여부와 인터페이스가 다를 수 있습니다. 대상 시스템에서 함수 시그니처와 허용 API 정책을 확인하고, 필요하면 `ZIF_FI_REV_PROXY` 구현만 사내 RFC Wrapper 또는 released API로 교체하십시오.
-
-## 중요한 처리 규칙
-
-1. 이미 `BKPF-STBLG`가 채워진 원본은 완료된 요청으로 간주하고 중복 역분개하지 않습니다.
-2. `ResetClearing` 없이 `ReverseClearingDocument`만 선택할 수 없습니다.
-3. 각 Clearing Item이 완료된 뒤 다음 품목을 처리합니다.
-4. 반제 초기화 성공 후 원본 역분개가 실패할 수 있으므로 상태를 단계별로 저장합니다.
-5. `AWTYP = AMBU` 또는 `DocumentOrigin = FI_AA`인 전표는 일반 FI BAPI로 역분개하지 않고 `UNSUPPORTED_ORIGIN`으로 종료합니다.
-6. FI-AA 전표는 별도 Asset Accounting Reversal Adapter를 구현한 후 활성화해야 합니다.
-
-## 설치
-
-1. abapGit에서 이 디렉터리를 새 온라인 저장소 또는 ZIP으로 연결합니다.
-2. 패키지 `ZFI_REV`로 Pull합니다.
-3. 테이블 → CDS → Behavior → Class → Service 순서로 활성화합니다.
-4. `ZAPI_FI_REV_O4`를 활성화하고 Publish합니다.
-5. 개발 시스템에서 `TestRun = true` 요청으로 원본 전표 검증부터 확인합니다.
-6. 반제 초기화 함수의 대상 시스템 동작과 Commit 범위를 검증한 뒤 실제 실행을 허용합니다.
-
-## 운영 적용 전 필수 보완
-
-- 회사코드·전표유형·금액 기준 실행 권한
-- 역분개 사유 및 전기기간 검증
-- 동일 원본 전표에 대한 동시 요청 Lock
-- BAL Application Log
-- 승인 Workflow 및 고액 전표 통제
-- 실패 단계별 Retry Action
-- FI-AA, MM, SD 등 원천 애플리케이션별 Reversal Adapter
-
-Copyright (c) 2026 Junhyeong Lee. All rights reserved.
