@@ -34,36 +34,7 @@ unmanaged RAP, Save Phase buffer, bgPF와 Factory/Proxy 적용
 | `ClearingFiscalYear` | O | 반제전표 회계연도 |
 | `ClearingDocument` | O | 초기화할 반제전표번호 |
 
-`ResetClearing = true`이면 최소 한 개의 Item이 필요합니다. 하나의 원본 전표에 여러 반제전표가 연결된 경우 Items에 모두 전달합니다.
-
-## 요청 예제
-
-```json
-{
-  "ExternalRequestId": "REV-2026-000001",
-  "CompanyCode": "1000",
-  "FiscalYear": "2026",
-  "DocumentNumber": "1900000123",
-  "DocumentOrigin": "FI",
-  "ReversalReason": "01",
-  "ReversalPostingDate": "2026-07-30",
-  "ReversalPeriod": "07",
-  "BusinessTransaction": "RFBU",
-  "ResetClearing": true,
-  "ReverseClearingDocument": true,
-  "ReverseOriginalDocument": true,
-  "TestRun": false,
-  "HeaderText": "Wrong customer clearing",
-  "_Items": [
-    {
-      "ItemNumber": "000001",
-      "ClearingCompanyCode": "1000",
-      "ClearingFiscalYear": "2026",
-      "ClearingDocument": "1400000456"
-    }
-  ]
-}
-```
+`ResetClearing = true`이면 최소 한 개의 Item이 필요합니다. 하나의 원본 전표에 여러 반제전표가 연결된 경우 Items에 모두 전달
 
 ## 처리 상태
 
