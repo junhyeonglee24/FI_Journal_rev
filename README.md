@@ -1,6 +1,6 @@
 # ZFI_REV
 
-전표의 Clearing 초기화와 reverse를 async RAP OData V4(Web API)
+전표의 Clearing 초기화와 reverse를 async로 진행 ( RAP OData V4(Web API) )
 
 unmanaged RAP, Save Phase buffer, bgPF와 Factory/Proxy 적용
 
