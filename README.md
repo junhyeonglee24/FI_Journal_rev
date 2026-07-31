@@ -4,53 +4,6 @@
 
 unmanaged RAP, Save Phase buffer, bgPF와 Factory/Proxy 적용
 
-# 범위
-
-- 외부 요청 ID를 이용한 중복 접수 방지
-- RAP Deep Create로 원본 전표 Header와 반제전표 Items 접수
-- bgPF 비동기 실행
-- 선택한 반제전표별 Clearing Reset
-- 선택적 반제전표 역분개
-- 원본 FI 전표 역분개
-- 요청·품목별 처리 상태, BAPI 메시지, 역분개 Object Key 저장
-- Test Run 시 입력 및 원본 전표 존재 여부만 검증
-- 완료된 요청과 품목을 건너뛰는 기본 재실행 보호
-
-# 흐름
-
-```mermaid
-flowchart TD
-    A[OData V4 Deep Create] --> B[RAP Validation]
-    B --> C[Request와 Items 저장]
-    C --> D[bgPF Operation 등록]
-    D --> E[원본 FI 전표 검증]
-    E --> F{TestRun?}
-    F -- 예 --> G[VALIDATED]
-    F -- 아니오 --> H{ResetClearing?}
-    H -- 예 --> I[Item별 Clearing Reset]
-    I --> J{ReverseClearingDocument?}
-    J -- 예 --> K[반제전표 역분개]
-    J -- 아니오 --> L{ReverseOriginalDocument?}
-    K --> L
-    H -- 아니오 --> L
-    L -- 예 --> M[원본 전표 역분개]
-    L -- 아니오 --> N[COMPLETED]
-    M --> N
-```
-
-## OData V4 객체
-
-| 역할 | 객체 |
-|---|---|
-| Header Interface View | `ZI_FI_REV_REQ` |
-| Item Interface View | `ZI_FI_REV_ITM` |
-| Header Projection View | `ZC_FI_REV_REQ` |
-| Item Projection View | `ZC_FI_REV_ITM` |
-| Behavior Pool | `ZBP_I_FI_REV_REQ` |
-| Service Definition | `ZAPI_FI_REV` |
-| Service Binding | `ZAPI_FI_REV_O4` |
-| Header Entity Set | `ReversalRequests` |
-| Item Entity Set | `ReversalClearingItems` |
 
 ## Header Parameters
 
